@@ -1,0 +1,20 @@
+# ===== React Client =====
+node_modules
+build
+.env
+
+# ===== Server =====
+server/node_modules
+server/.env
+
+# ===== Logs =====
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== Mac =====
+.DS_Store
+
+# ===== Optional =====
+dist
+coverage

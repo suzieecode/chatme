@@ -1,0 +1,39 @@
+.landing {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle,#141e30,#243b55);
+    color: white;
+    text-align: center;
+  }
+  
+  .landing h1 {
+    font-size: 70px;
+    background: linear-gradient(90deg,#ff00cc,#3333ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .landing p {
+    margin-top: 10px;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  
+  .landing button {
+    margin-top: 40px;
+    padding: 16px 50px;
+    border-radius: 40px;
+    border: none;
+    font-size: 18px;
+    background: linear-gradient(90deg,#00c6ff,#0072ff);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .landing button:hover {
+    transform: scale(1.08);
+  }
