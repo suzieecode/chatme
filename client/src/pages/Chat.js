@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import { auth } from "../firebase";
 import { socket } from "../socket";
-import Navbar from "../components/Navbar"; // ✅ IMPORTANT
+import Navbar from "../components/Navbar";
+
+const API = "https://chatme-qzee.onrender.com"; // ✅ LIVE BACKEND
 
 function Chat() {
   const [users, setUsers] = useState([]);
@@ -16,7 +18,11 @@ function Chat() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user);
+
+        // Register this user to socket server
         socket.emit("register_user", user.email);
+
+        // Fetch all users except yourself
         fetchUsers(user.email);
       }
     });
@@ -32,17 +38,17 @@ function Chat() {
     return () => socket.off("receive_message", handleReceive);
   }, []);
 
-  // ===== Fetch users =====
+  // ===== Fetch users from backend =====
   const fetchUsers = async (email) => {
-    const res = await fetch("http://localhost:5005/users");
+    const res = await fetch(`${API}/users`);
     const data = await res.json();
     setUsers(data.filter((u) => u.email !== email));
   };
 
-  // ===== Fetch old messages =====
+  // ===== Fetch old messages when user selected =====
   const fetchMessages = async (otherUser) => {
     const res = await fetch(
-      `http://localhost:5005/messages?senderEmail=${currentUser.email}&receiverEmail=${otherUser.email}`
+      `${API}/messages?senderEmail=${currentUser.email}&receiverEmail=${otherUser.email}`
     );
     const data = await res.json();
     setMessages(data);
@@ -63,11 +69,10 @@ function Chat() {
 
   return (
     <>
-      {/* ✅ Navbar on top */}
       <Navbar />
 
-      {/* ✅ Push content below navbar */}
       <div className="app" style={{ marginTop: "80px" }}>
+        {/* ===== Sidebar ===== */}
         <div className="sidebar">
           <div className="brand">💬 ChatMe</div>
 
@@ -86,6 +91,7 @@ function Chat() {
           ))}
         </div>
 
+        {/* ===== Chat Area ===== */}
         <div className="chat">
           {selectedUser ? (
             <>
