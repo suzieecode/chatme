@@ -22,7 +22,7 @@ function Login() {
 
     socket.emit("register_user", userData.email);
 
-    await fetch("http://localhost:5005/save-user", {
+    await fetch("https://chatme-qzee.onrender.com/save-user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),

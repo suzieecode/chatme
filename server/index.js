@@ -17,7 +17,7 @@ mongoose.connect(
 
 // ===== Express Setup =====
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const server = http.createServer(app);
@@ -25,7 +25,7 @@ const server = http.createServer(app);
 // ===== Socket Setup =====
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
   },
 });
 

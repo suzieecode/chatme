@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile";
 
 function App() {
   return (
