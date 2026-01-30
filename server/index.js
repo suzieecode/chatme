@@ -10,7 +10,7 @@ const Message = require("./models/Message");
 
 // ===== MongoDB Connection =====
 mongoose.connect(
-  "mongodb+srv://sujal:Sujal%40123@cluster0.4p8cfxo.mongodb.net/chat?retryWrites=true&w=majority"
+    process.env.MONGODB_URI
 )
 .then(() => console.log("MongoDB connected successfully"))
 .catch((err) => console.log("MongoDB connection error:", err));
@@ -136,6 +136,6 @@ app.get("/messages", async (req, res) => {
   });
 
 // ===== Start Server =====
-server.listen(5005, () => {
+server.listen(process.env.PORT || 5005, () => {
   console.log("Server running on port 5005");
 });
